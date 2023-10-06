@@ -1,6 +1,8 @@
 # General folders
 .venv/
 data/
+.idea/
+.pytest_cache/
 
 # Logs
 logs/data/*

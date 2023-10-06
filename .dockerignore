@@ -4,6 +4,7 @@
 .git/
 data/
 sql/
+.pytest_cache/
 
 # Logs
 logs/data/*.csv
