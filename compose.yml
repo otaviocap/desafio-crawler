@@ -1,0 +1,48 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "8001:5432"
+    environment:
+      - POSTGRES_DB=demo
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - PG_DATA=/var/lib/pg_data
+    volumes:
+      - ./data/postgres-data:/var/lib/pg_data:Z
+
+  chrome:
+    image: selenium/node-chrome:4.13.0-20231004
+    shm_size: 2gb
+    depends_on:
+      - hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  hub:
+    image: selenium/hub:latest
+    container_name: selenium-hub
+    ports:
+      - "4442:4442"
+      - "4443:4443"
+      - "4444:4444"
+
+  app:
+    depends_on:
+      - chrome
+      - db
+      - hub
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./logs:/app/logs
+
+volumes:
+  app:
+    external: true

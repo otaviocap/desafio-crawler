@@ -1,0 +1,13 @@
+# General folders
+.venv/
+data/
+
+# Logs
+logs/data/*
+!logs/data/.gitkeep
+
+logs/images/*
+!logs/images/.gitkeep
+
+logs/text/*
+!logs/text/.gitkeep

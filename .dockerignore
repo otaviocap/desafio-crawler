@@ -1,0 +1,14 @@
+# General folders
+.venv/
+.idea/
+.git/
+data/
+sql/
+
+# Logs
+logs/data/*.csv
+logs/data/*.json
+
+logs/images/*.png
+
+logs/text/*.log
