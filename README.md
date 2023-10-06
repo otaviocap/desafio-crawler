@@ -89,6 +89,12 @@ docker compose up
 
 
 - Conseguir agendar uma execução para um dia e horario.
+  - Para agendar dia e horário basta utilizar ou o Task System no Windows ou o cron no Linux. Por
+  desenvolver no Linux este projeto, coloquei dentro da raiz um arquivo `cronfile`, nele tem o conteúdo 
+  que deve ser colocado no seus de cronjobs. Para isso voce pode ir até as pastas 
+  `/etc/cron.{hourly, daily, weekly, monthly}` ou `/etc/cron.d` e colocar o arquivo lá. Lembre-se de alterar
+  para os parêmetros desejados e colocar o caminho da pasta que este repo foi clonado. Da maneira que esta ele 
+  vai rodar diáriamente a meia noite.
 
 ### Libs sugeridas:
 
