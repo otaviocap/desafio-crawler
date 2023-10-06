@@ -11,3 +11,5 @@ logs/images/*
 
 logs/text/*
 !logs/text/.gitkeep
+
+__pycache__
