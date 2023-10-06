@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from psycopg_pool import ConnectionPool
 

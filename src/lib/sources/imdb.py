@@ -1,6 +1,4 @@
 import logging
-import os.path
-from datetime import date
 
 from selenium.webdriver.common.by import By
 from selenium import webdriver

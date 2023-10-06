@@ -15,7 +15,7 @@ def insert(pool: ConnectionPool, movies: list[Movie]):
     with pool.connection() as conn:
 
         with conn.cursor() as cur:
-            # If needs it can be translated to a Copy statement for better performance!
+            # If needs it can be changed to a Copy statement for better performance!
 
             cur.executemany(
                 "INSERT INTO movies (name, rating, release_year, length, score, position) " +
