@@ -39,3 +39,12 @@ def get_all(pool: ConnectionPool) -> list[Movie]:
                 movies.append(record)
 
     return movies
+
+
+def remove(pool: ConnectionPool, movie: Movie):
+    logging.info(f"Removing this movie {movie} from database")
+
+    conn: Connection
+    with pool.connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("DELETE FROM movies WHERE name = %s", [movie.name])
