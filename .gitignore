@@ -3,6 +3,7 @@
 data/
 .idea/
 .pytest_cache/
+.run/
 
 # Logs
 logs/data/*
