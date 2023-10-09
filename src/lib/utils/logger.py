@@ -3,13 +3,13 @@ from datetime import date
 import logging
 
 
-def start_logger():
+def start_logger(file_name: str = 'Log'):
     logging.basicConfig(
         format='%(asctime)s [%(levelname)s]: %(message)s',
         level=logging.INFO,
         handlers=[
             logging.FileHandler(
-                get_file_location('text', 'Log', 'log'),
+                get_file_location('text', file_name, 'log'),
                 encoding='utf-8'),
             logging.StreamHandler()
         ]

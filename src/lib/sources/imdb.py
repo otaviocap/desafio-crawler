@@ -7,7 +7,7 @@ from lib.models.movie import Movie
 from lib.utils.logger import get_file_location
 
 
-def get_top_movies(driver: webdriver.Remote) -> list[Movie]:
+def get_top_movies(driver: webdriver.Remote, screenshot_file_name: str = "Best Movies") -> list[Movie]:
     logging.info("Starting scrapping imdb for the best 250 movies")
 
     driver.get("https://www.imdb.com/chart/top/?ref_=nv_mv_250")
@@ -34,6 +34,6 @@ def get_top_movies(driver: webdriver.Remote) -> list[Movie]:
 
         movies.append(movie)
 
-    driver.get_screenshot_as_file(get_file_location('images', "Best Movies", "png"))
+    driver.get_screenshot_as_file(get_file_location('images', screenshot_file_name, "png"))
 
     return movies

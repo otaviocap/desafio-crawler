@@ -15,12 +15,16 @@ class TestDriver:
 
     def test_imdb(self):
         driver = get_driver()
-        movies = get_top_movies(driver)
+        movies = get_top_movies(driver, "Best Movies Test")
 
         assert len(movies) == 250
         driver.quit()
 
     def test_screenshot_log(self):
-        assert os.path.exists(get_file_location('images', "Best Movies", "png"))
+        location = get_file_location('images', "Best Movies Test", "png")
+
+        assert os.path.exists(location)
+        os.remove(location)
+
 
 
