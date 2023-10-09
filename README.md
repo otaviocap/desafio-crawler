@@ -39,12 +39,17 @@ Da maneira local a execução pode ser realizada da seguinte maneira.
 virtualenv .venv
 ```
 
-2. Instale as depêndencias do projeto
+2. Habilite o ambiente virtual
+```commandline
+source .venv/bin/activate
+```
+
+3. Instale as depêndencias do projeto
 ```commandline
 pip install -r requirements.txt
 ```
 
-3. Inicie a aplicação
+4. Inicie a aplicação
 ```commandline
 ./run.sh
 ```
@@ -58,6 +63,13 @@ Para subir com o Docker é muito simples, apenas utilize o docker compose que j�
 ```commandline
 docker compose up
 ```
+
+Caso queira subir apenas o container da aplicação é possível rodar
+```commandline
+docker compose up -d --no-deps --build app
+```
+Isso ira forçar o docker a reconstruir a imagem, não atribuir o terminal para ela e subir a aplicação sem verificar 
+os outros containers no compose.
 
 ## Atenção
 Antes de iniciar o projeto e começar a realizar o scrapping é necessário ter atenção a dois detalhes:
@@ -149,4 +161,3 @@ funcinando (Nodo Chrome, Selenium Hub e Postgres) e executar o script de testes:
 - Cobertura de testes
 - Tempo de execução do código
 - Versionamento do código
-- 
