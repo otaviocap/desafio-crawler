@@ -19,7 +19,7 @@ def start_db() -> ConnectionPool:
     return pool
 
 
-def make_db(pool: ConnectionPool):
+def make_db(pool: ConnectionPool, force: bool = False):
     folder = os.path.join(os.getcwd(), 'sql')
 
     logging.info(f"Reading sql files from {folder}")
@@ -28,6 +28,16 @@ def make_db(pool: ConnectionPool):
     conn: Connection
     with pool.connection() as conn:
         with conn.cursor() as cur:
+
+            if not force:
+                cur.execute("SELECT EXISTS ( SELECT 1 FROM pg_tables WHERE tablename = 'movies' ) AS table_existence")
+
+                if cur.fetchone()[0]:
+                    logging.info("Table already exists. No need to recreate it")
+
+                    return
+
+            logging.info("Preparing database")
             for file in files:
                 with open(os.path.join(folder, file), 'r') as sql:
                     cur.execute(sql.read())

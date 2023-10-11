@@ -43,8 +43,14 @@ virtualenv .venv
 ```commandline
 source .venv/bin/activate
 ```
+3. Instalar as depêndencias do banco de dados.
+O projeto utiliza o PostgreSQL e a biblioteca psycopg na versão 3.
+```commandline
+sudo apt install libpq5
+```
+Para mais dúvidas sobre a instalação existe a [documentação da biblioteca](https://www.psycopg.org/psycopg3/docs/basic/install.html#pure-python-installation)
 
-3. Instale as depêndencias do projeto
+4. Instale as depêndencias do projeto
 ```commandline
 pip install -r requirements.txt
 ```
@@ -64,6 +70,16 @@ Para subir com o Docker é muito simples, apenas utilize o docker compose que j�
 docker compose up
 ```
 
+Caso precise reconstruir a imagem, após uma atualização, é possível rodar:
+```commandline
+docker compose build app
+```
+
+Ou caso prefira reconstruir os serviços e já subir a aplicação:
+```commandline
+docker compose up --build
+```
+
 Caso queira subir apenas o container da aplicação é possível rodar
 ```commandline
 docker compose up -d --no-deps --build app
@@ -72,7 +88,9 @@ Isso ira forçar o docker a reconstruir a imagem, não atribuir o terminal para 
 os outros containers no compose.
 
 ## Atenção
-Antes de iniciar o projeto e começar a realizar o scrapping é necessário ter atenção a dois detalhes:
+Antes de iniciar o projeto e começar a realizar o scrapping é necessário ter atenção a alguns detalhes:
+* Os scripts da pasta `scripts/`, com exceção do `entry-point.sh`, pressupõem que o ambiente esteja configurado localmente, 
+pois dependem da presença do ambiente virtual e devem ser usados para a configuração pré execução da aplicação ou testes.
 * O scrapper automaticamente salva os dados em uma tabela em um banco de dados, para que isso seja possível
 rode antes de iniciar a utilizar a aplicação `./scripts/prepare.sh` esse script será responsável por preparar
 o banco de dados. Esencialmente rodando todos os arquivos `.sql` dentro da pasta `sql/`.

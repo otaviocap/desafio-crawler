@@ -11,4 +11,4 @@ ENV OS_ENV "container"
 
 COPY . /app
 
-CMD [ "python3", "/app/src/app.py", "--csv", "--json" ]
+ENTRYPOINT bash ./scripts/entry-point.sh

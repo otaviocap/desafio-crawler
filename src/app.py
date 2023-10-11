@@ -1,6 +1,9 @@
 import argparse
 import logging
 
+from selenium import webdriver
+from psycopg_pool import ConnectionPool
+
 from lib.persistence import movies
 from lib.scrapper.driver import get_driver
 from lib.sources import imdb
@@ -23,12 +26,18 @@ def main():
     args = parser.parse_args()
 
     logging.info("Starting app!")
-    pool = start_db()
-    driver = get_driver()
+
+    pool: ConnectionPool | None = None
+    driver: webdriver.Remote | None = None
+
     try:
+        pool = start_db()
+
         if args.database:
             make_db(pool)
             return
+
+        driver = get_driver()
 
         top_movies: list[movies]
         if args.local:
@@ -49,8 +58,12 @@ def main():
         logging.exception(f'Something went wrong. Error: {e}')
 
     finally:
-        driver.quit()
-        pool.close()
+        if driver is not None:
+            driver.quit()
+
+        if pool is not None:
+            pool.close()
+
         logging.info("Closed driver and database connection")
 
 
