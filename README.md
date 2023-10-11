@@ -55,7 +55,7 @@ Para mais dúvidas sobre a instalação existe a [documentação da biblioteca](
 pip install -r requirements.txt
 ```
 
-4. Inicie a aplicação
+5. Inicie a aplicação
 ```commandline
 ./run.sh
 ```
