@@ -5,6 +5,6 @@ CREATE TABLE Movies (
     Length varchar(64),
     Score real,
     Position smallint NOT NULL,
-    Id uuid NOT NULL DEFAULT uuid_generate_v4(),
+    Id SERIAL not null,
     CONSTRAINT movie_pkey PRIMARY KEY (Id)
 );
